@@ -1,0 +1,33 @@
+# ignore mac files
+.DS_Store/
+.DS_Store
+
+# ignore python files
+__pycache__/
+.ipynb_checkpoints/
+
+# ignore vs code 
+.vscode/
+.env
+
+# ignore storage partition link
+storage/
+storage
+
+# ignore media
+media/
+figures/
+*.mp4
+*.gif
+*.png
+*.PNG
+*.jpeg
+
+# ignore general output
+output/
+*.log
+*.input
+
+# ignore workarea
+workarea/*
+!workarea/scripts
