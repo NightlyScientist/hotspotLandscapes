@@ -23,3 +23,5 @@ Figures 3A and 7A in the article use data generated from the first set of comman
 Additinally, individual simulations can be executed using main.jl; a list of command-line options can be displayed using
 
 > julia src/base/main.jl --help
+
+SI figures for optimal path calculations can be generated in the stand-alone jupyter notebook [src/calculations/hotspot-graph.ipynb](./src/calculations/hotspot-graph.ipynb). 
