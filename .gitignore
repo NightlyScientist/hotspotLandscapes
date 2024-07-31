@@ -31,3 +31,4 @@ output/
 # ignore workarea
 workarea/*
 !workarea/scripts
+!workarea/simulation_commands.txt
