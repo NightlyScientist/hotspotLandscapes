@@ -1,7 +1,16 @@
+# these two lines perform a parameter sweep of the density and intensity parameters, corresponding to intervals_1, intervals_2, respectively. Specifically, these generate samples in the small intensity regime.
+
 python src/processing/generate_parameter_space_search.py --numberTrials 200 --numberSamples 50 --dims 2000,1100 --data_path workspace/experiments/ --radius 10 --density 0.09 --intensity 8 --ref_line 1000 --detailed_analytics --nEnvs 20 --intervals_1 0.55,0.05,0.8 --intervals_2 0,0.1,1 --rewrite
 
 python src/processing/generate_parameter_space_search.py --numberTrials 200 --numberSamples 50 --dims 2000,1100 --data_path workspace/experiments/ --radius 10 --density 0.09 --intensity 8 --ref_line 1000 --detailed_analytics --nEnvs 20 --intervals_1 0.05,0.05,0.5 --intervals_2 0,0.1,1 --rewrite 
 
-python src/processing/generate_parameter_space_search.py --numberTrials 200 --numberSamples 50 --dims 2000,1100 --data_path workspace/experiments/ --radius 10 --density 0.09 --intensity 8 --ref_line 1000 --detailed_analytics --nEnvs 20 --intervals_1 0.05,0.05,0.5 --intervals_2 0,2,8 --rewrite
+
+# these next four lines perform a parameter sweep of the density and intensity parameters, corresponding to intervals_1, intervals_2, respectively. In this set, we generate data for the intermediate to high intensity regime. 
 
 python src/processing/generate_parameter_space_search.py --numberTrials 200 --numberSamples 50 --dims 2000,1100 --data_path workspace/experiments/ --radius 10 --density 0.09 --intensity 8 --ref_line 1000 --detailed_analytics --nEnvs 20 --intervals_1 0.55,0.05,0.8 --intervals_2 0,2,8 --rewrite
+
+python src/processing/generate_parameter_space_search.py --numberTrials 200 --numberSamples 50 --dims 2000,1100 --data_path workspace/experiments/ --radius 10 --density 0.09 --intensity 8 --ref_line 1000 --detailed_analytics --nEnvs 20 --intervals_1 0.05,0.05,0.5 --intervals_2 0,2,8 --rewrite
+
+python src/processing/generate_parameter_space_search.py --numberTrials 200 --numberSamples 50 --dims 2000,1100 --data_path workspace/experiments/ --radius 10 --density 0.09 --intensity 8 --ref_line 1000 --detailed_analytics --nEnvs 20 --intervals_1 0.55,0.05,0.8 --intervals_2 1,2,5 --rewrite
+
+python src/processing/generate_parameter_space_search.py --numberTrials 200 --numberSamples 50 --dims 2000,1100 --data_path workspace/experiments/ --radius 10 --density 0.09 --intensity 8 --ref_line 1000 --detailed_analytics --nEnvs 20 --intervals_1 0.05,0.05,0.5 --intervals_2 1,2,5 --rewrite
