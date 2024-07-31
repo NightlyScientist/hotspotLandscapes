@@ -24,4 +24,4 @@ Additinally, individual simulations can be executed using main.jl; a list of com
 
 > julia src/base/main.jl --help
 
-SI figures for optimal path calculations can be generated in the stand-alone jupyter notebook [src/calculations/hotspot-graph.ipynb](./src/calculations/hotspot-graph.ipynb). 
+SI figures for optimal path calculations can be generated in the jupyter notebook [src/calculations/hotspot-graph.ipynb](./src/calculations/hotspot-graph.ipynb). 
