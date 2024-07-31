@@ -16,7 +16,6 @@ storage
 
 # ignore media
 media/
-figures/
 *.mp4
 *.gif
 *.png
@@ -30,5 +29,4 @@ output/
 
 # ignore workarea
 workarea/*
-!workarea/scripts
 !workarea/simulation_commands.txt

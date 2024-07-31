@@ -1,1 +1,12 @@
-indent = 4
+style = "blue"
+indent = 2
+remove_extra_newlines = true
+whitespace_in_kwargs = false
+margin = 120
+yas_style_nesting = true
+always_use_return = false
+short_to_long_function_def = false
+long_to_short_function_def = true
+trailing_comma = false
+join_lines_based_on_source = false
+separate_kwargs_with_semicolon = true
