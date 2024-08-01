@@ -36,4 +36,8 @@ Julia package dependencies can be downloaded and installed for the current proje
 
 > julia --project=. -e 'using Pkg; Pkg.instantiate()'
 
+If using the Conda package manager for python, the python dependencies can be installed using 
+
+> conda env update -n range_expansion --file environment.yml
+
 While the script [generate_parameter_space_search.py](./src/processing/generate_parameter_space_search.py) to generate simulations works best with the [slurm workload manager](https://slurm.schedmd.com/overview.html) installed, the script will check for an existing slurm installion and will fallback to executing sequentially via bash if no slurm installation is found.
