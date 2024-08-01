@@ -2,7 +2,7 @@
 
 This is the public Git repository containing source code used in J. Gonzalez Nuñez, J. Paulose, W. Möbius, D. A. Beller, "Range Expansions across Landscapes with Quenched Noise." [arXiv:2310.11563](https://arxiv.org/abs/2310.11563) (2023).
 
-Example usage is shown bellow.
+Example usage is shown below.
 
 A two-parameter sweep can be performed using the [src/processing/generate_parameters_space_search.py](./src/processing/generate_parameter_space_search.py) file. For example,
 
@@ -20,7 +20,7 @@ The commands used in the above-referenced article are contained in [workarea/sim
 
 Source code used to generate article figures are contained in the [figures/](./figures/) directory. Analysis is performed by providing a list of directories (input variable) containing the simluation data from [generate_parameter_space_search.py](./src/processing/generate_parameter_space_search.py). If all data are saved in, for example, workarea/experiments/, the figure scripts will automatically scan and collect all simulation data and proceed with the analysis.
 
-There are three pre-processing scripts that need to be executed before running figure scripts: [figures/routines/ancestry.jl](figures/routines/ancestry.jl) which builds a n-ary tree using lineage branch points and processes lineage coalescences; [src/processing/process_fastest_paths.jl](src/processing/process_fastPaths.jl) which constructs a hotspot graph and uses a Floyd-Warshall (Dijkstra) path-finding algorithm to find optimal paths; [src/processing/process_lineages.jl](src/processing/process_lineages.jl) which determines the number of surviving ancestors, lineage Mean-Square-Displacement, and lineage tortuosity. The command-line options for these scripts can be found listed using the `--help` option. 
+There are three pre-processing scripts that need to be executed before running figure scripts: [figures/routines/ancestry.jl](figures/routines/ancestry.jl) which builds a n-ary tree using lineage branch points and processes lineage coalescences; [src/processing/process_fastest_paths.jl](src/processing/process_fastPaths.jl) which constructs a hotspot graph and uses a Floyd-Warshall (Dijkstra) path-finding algorithm to find optimal paths; [src/processing/process_lineages.jl](src/processing/process_lineages.jl) which measures the number of surviving ancestors, lineage Mean-Square-Displacement, and lineage tortuosity. The command-line options for these scripts can be listed using the `--help` option. 
 
 Figures 3A and 7A in the article use data generated from the first set of commands in [workarea/simulation_commands.txt](./workarea/simulation_commands.txt), while figures 3B, 7B, 6C, 6D, and 9 use both sets of data generation commands. Data for figures 4, 6A, 6B, and 8 are selected from both sets using the parameter values shown in the main text.
 
@@ -32,4 +32,4 @@ SI figures of optimal path calculations can be generated in the jupyter notebook
 
 This code requires both Julia (v1.10.4) and python (v3.11.5) to be installed. Our Julia environment is contained in the [Manifest.toml](Manifest.toml) and [Project.toml](Project.toml) files. Our Python environment is provided in [environment.yml](environment.yml).
 
-While the script [generate_parameter_space_search.py](./src/processing/generate_parameter_space_search.py) to generate simulations works best with the [slurm schedular](https://slurm.schedmd.com/overview.html) installed, the script will check for an existing slurm installion and will fallback to executing sequentially via bash if no slurm installation is found.
+While the script [generate_parameter_space_search.py](./src/processing/generate_parameter_space_search.py) to generate simulations works best with the [slurm workload manager](https://slurm.schedmd.com/overview.html) installed, the script will check for an existing slurm installion and will fallback to executing sequentially via bash if no slurm installation is found.
