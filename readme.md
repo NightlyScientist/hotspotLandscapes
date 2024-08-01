@@ -30,7 +30,7 @@ Additionally, individual simulations can be executed using main.jl; a list of co
 
 SI figures of optimal path calculations can be generated in the jupyter notebook [src/calculations/hotspot-graph.ipynb](./src/calculations/hotspot-graph.ipynb). 
 
-This code requires both Julia (v1.10.4) and python (v3.11.5) to be installed. Our Julia environment is contained in the [Manifest.toml](Manifest.toml) and [Project.toml](Project.toml) files. Our Python environment is provided in [requirements.txt](requirements.txt).
+This code requires both Julia (v1.10.4) and python (v3.11.5) to be installed. Our Julia environment is contained in the [Manifest.toml](Manifest.toml) and [Project.toml](Project.toml) files. Our Python environment is provided in [requirements.txt](requirements.txt) and in [environment.yml](environment.yml).
 
 Julia package dependencies can be downloaded and installed for the current project using the [Project.toml](Project.toml) file through the following command:
 
