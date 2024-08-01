@@ -74,6 +74,7 @@ print(f"Keeping {third_parameter[0]} constant")
 
 if vars(args)[third_parameter[0]] < 0:
     print(f"Please specify the value of {third_parameter[0]}")
+    exit()
 
 simFileInfo = saveLogs(vars(args))
 
