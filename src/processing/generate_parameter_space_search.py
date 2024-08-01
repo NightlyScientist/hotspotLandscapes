@@ -34,9 +34,9 @@ parser.add_argument("--numberSamples", type=int, default=50, help="number of sam
 parser.add_argument("--dims", required=True, type=to_list, help="dimensions of the lattice")
 parser.add_argument("--data_path", required=True, help="path to save data")
 
-parser.add_argument("--intensity", type=float, required=True, help="hotspot intensity")
-parser.add_argument("--radius", type=int, required=True, help="hotspot radius")
-parser.add_argument("--density", type=float, required=True, help="hotspot density")
+parser.add_argument("--intensity", type=float, default=-1, help="hotspot intensity")
+parser.add_argument("--radius", type=int, default=-1, help="hotspot radius")
+parser.add_argument("--density", type=float, default=-1, help="hotspot density")
 
 parser.add_argument("--gap", type=int, default=0, help="empty space around the lattice edges")
 parser.add_argument("--ref_line", type=int, default=0, help="to remove lattice effects at the front, one may desire to terminate data colection at a certain line")
@@ -46,7 +46,7 @@ parser.add_argument("--detailed_analytics", action="store_true", help="save line
 parser.add_argument("--rewrite", action="store_true", help="overwrite existing data during generation")
 
 parser.add_argument("--nEnvs", type=int, default=1, help="number of environments to run")
-parser.add_argument("--parameters", default="density,intensity", type=to_string_list, help="the two parameters to vary")
+parser.add_argument("--parameters", default="density,intensity", type=to_string_list, help="the two parameters to vary. Choose from ['density', 'intensity', 'radius']")
 # task: append multiple intervals when calling flags repeatedly
 parser.add_argument("--intervals_1", required=True, type=to_list, help="intervals for the first parameter")
 parser.add_argument("--intervals_2", required=True, type=to_list, help="intervals for the second parameter")
@@ -65,6 +65,15 @@ start, step, stop = args.intervals_1
 intensity = args.intensity
 radius = args.radius
 density = args.density
+
+parameter_options = ["intensity", "radius", "density"]
+third_parameter = [x for x in parameter_options if x not in [p_1, p_2]]
+
+print(f"Varying {p_1} and {p_2} over {args.intervals_1} and {args.intervals_2}, respectively")
+print(f"Keeping {third_parameter[0]} constant")
+
+if vars(args)[third_parameter[0]] < 0:
+    print(f"Please specify the value of {third_parameter[0]}")
 
 simFileInfo = saveLogs(vars(args))
 
@@ -100,4 +109,3 @@ for parameterVal in arange(start, stop + step, step=step):
         cmd.replace("sbatch", "bash")
 
     subprocess.run(cmd, shell=True)
-
