@@ -8,9 +8,9 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--input", type=str, required=True)
-parser.add_argument("--processed", action="store_true")
-parser.add_argument("--deprecated", action="store_true")
+parser.add_argument("--input", type=str, required=True, help="path to the data from the parameter space search.py")
+parser.add_argument("--processed", action="store_true", help="overwrite existing csv files generated from this script. used for speeding up this script")
+parser.add_argument("--deprecated", action="store_true", help="include data in deprecated formats")
 args = parser.parse_args()
 # opts = vars(args)
 

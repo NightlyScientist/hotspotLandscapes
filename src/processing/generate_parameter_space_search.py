@@ -4,6 +4,8 @@ import os
 import pathlib
 import time
 import sys
+import subprocess
+import shutil
 
 def to_list(arg):
     return [float(i) for i in arg.split(",")]
@@ -27,27 +29,27 @@ def saveLogs(cmdinput) -> str:
     return simInfoFile
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--numberTrials", type=int, default=1)
-parser.add_argument("--numberSamples", type=int, default=50)
-parser.add_argument("--dims", required=True, type=to_list)
-parser.add_argument("--data_path", required=True)
+parser.add_argument("--numberTrials", type=int, default=1, help="number of trials to run")
+parser.add_argument("--numberSamples", type=int, default=50, help="number of samples to generate")
+parser.add_argument("--dims", required=True, type=to_list, help="dimensions of the lattice")
+parser.add_argument("--data_path", required=True, help="path to save data")
 
-parser.add_argument("--intensity", type=float, required=True)
-parser.add_argument("--radius", type=int, required=True)
-parser.add_argument("--density", type=float, required=True)
+parser.add_argument("--intensity", type=float, required=True, help="hotspot intensity")
+parser.add_argument("--radius", type=int, required=True, help="hotspot radius")
+parser.add_argument("--density", type=float, required=True, help="hotspot density")
 
-parser.add_argument("--gap", type=int, default=0)
-parser.add_argument("--ref_line", type=int, default=0)
+parser.add_argument("--gap", type=int, default=0, help="empty space around the lattice edges")
+parser.add_argument("--ref_line", type=int, default=0, help="to remove lattice effects at the front, one may desire to terminate data colection at a certain line")
 
-parser.add_argument("--rng_seed", type=int, default=1)
-parser.add_argument("--detailed_analytics", action="store_true")
-parser.add_argument("--rewrite", action="store_true")
+parser.add_argument("--rng_seed", type=int, default=1, help="random seed")
+parser.add_argument("--detailed_analytics", action="store_true", help="save lineages, sectors, branch points, and final front")
+parser.add_argument("--rewrite", action="store_true", help="overwrite existing data during generation")
 
-parser.add_argument("--nEnvs", type=int, default=1)
-parser.add_argument("--parameters", default="density,intensity", type=to_string_list)
+parser.add_argument("--nEnvs", type=int, default=1, help="number of environments to run")
+parser.add_argument("--parameters", default="density,intensity", type=to_string_list, help="the two parameters to vary")
 # task: append multiple intervals when calling flags repeatedly
-parser.add_argument("--intervals_1", required=True, type=to_list)
-parser.add_argument("--intervals_2", required=True, type=to_list)
+parser.add_argument("--intervals_1", required=True, type=to_list, help="intervals for the first parameter")
+parser.add_argument("--intervals_2", required=True, type=to_list, help="intervals for the second parameter")
 
 args = parser.parse_args()
 
@@ -92,4 +94,10 @@ for parameterVal in arange(start, stop + step, step=step):
             --intervals {",".join(str(x) for x in args.intervals_2)} \
             --flags {",".join(extra_flags)}
             """
-    os.system(cmd)
+
+    if shutil.which("sbatch") is None:
+        print("Slurm scheduler is not installed. Executing using bash.")
+        cmd.replace("sbatch", "bash")
+
+    subprocess.run(cmd, shell=True)
+

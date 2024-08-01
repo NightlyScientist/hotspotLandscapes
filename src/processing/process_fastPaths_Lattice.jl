@@ -53,6 +53,7 @@ opts = begin
   sts = ArgParseSettings()
   add_arg_table!(sts, "--parameter_space_table", Dict(:arg_type => String, :required => true))
   add_arg_table!(sts, "--n_fastest", Dict(:arg_type => Int, :required => true))
+  add_arg_table!(sts, "--interval", Dict(:arg_type => Int, :required => true))
   add_arg_table!(sts, "--cutoff", Dict(:arg_type => Float64, :required => true))
   parse_args(sts)
 end
@@ -65,13 +66,9 @@ height = sim.height
 dims = (width, height)
 radius = sim.radius
 nfast = opts["n_fastest"]
+interval = opts["interval"]
 
 df = CSV.read(opts["parameter_space_table"], DataFrame)
-
-@threads for single_trial in eachrow(df)
-  data_path = single_trial.path
-  execute_main(data_path, opts["n_fastest"], opts["cutoff"])
-end
 
 @threads for single_trial in eachrow(df)
   ref_line = single_trial.ref_line
@@ -81,5 +78,5 @@ end
   # rebuild rates
   rates = Float64[1.0, single_trial.intensity + 1]
 
-  execute_paths(dims, data_path, radius, width, height, rates, ref_line, nfast)
+  execute_main(data_path, radius, width, height, rates, ref_line, nfast; interval=interval)
 end

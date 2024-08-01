@@ -147,7 +147,7 @@ function optimalPathsImage(
   # @info fig_path
 end
 
-function execute_main(input, n_fastest, cutoff, interval; NN = false, figures=false)
+function execute_main(input, n_fastest, cutoff, interval; NN = false, figures=false, floyd=true)
   save_name = input
   opts = namedtuple(load(joinpath(input, "Opts.jld2")))
   htspts = load(joinpath(input, "objects.jld2"), "objs")
@@ -172,7 +172,6 @@ function execute_main(input, n_fastest, cutoff, interval; NN = false, figures=fa
   )
   gPositions = ContinuousOptPaths.graphPosisions(sources_to_htspts, sinks_to_htpts, voronoiGraph.generators, opts)
 
-  floyd = NN ? false : true
   optimalPathSets = allOptimalPaths(
     sourceIndices, sinkIndices, opts, gPositions, g; n=n_fastest, cutoff=cutoff, floyd=floyd
   )
@@ -205,6 +204,7 @@ opts = begin
   add_arg_table!(sts, "--cutoff", Dict(:arg_type => Float64, :required => true))
   add_arg_table!(sts, "--figures", Dict(:action => :store_true))
   add_arg_table!(sts, "--NN", Dict(:action => :store_true))
+  add_arg_table!(sts, "--floyd", Dict(:action => :store_true))
   parse_args(sts)
 end
 
@@ -214,5 +214,5 @@ df = CSV.read(opts["parameter_space_table"], DataFrame)
 
 @threads for single_trial in eachrow(df)
   data_path = single_trial.path
-  execute_main(data_path, opts["n_fastest"], opts["cutoff"], opts["interval"]; figures=opts["figures"], NN=opts["NN"])
+  execute_main(data_path, opts["n_fastest"], opts["cutoff"], opts["interval"]; figures=opts["figures"], NN=opts["NN"], floyd=opts["floyd"])
 end
