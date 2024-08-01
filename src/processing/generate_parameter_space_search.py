@@ -46,7 +46,7 @@ parser.add_argument("--detailed_analytics", action="store_true", help="save line
 parser.add_argument("--rewrite", action="store_true", help="overwrite existing data during generation")
 
 parser.add_argument("--nEnvs", type=int, default=1, help="number of environments to run")
-parser.add_argument("--parameters", default="density,intensity", type=to_string_list, help="the two parameters to vary. Choose from ['density', 'intensity', 'radius']")
+parser.add_argument("--parameters", default="density,intensity", type=to_string_list, help="the two parameters to vary. Choose from ['density', 'intensity', 'radius']. The non-chosen parameter will be kept constant, and must be specified.")
 # task: append multiple intervals when calling flags repeatedly
 parser.add_argument("--intervals_1", required=True, type=to_list, help="intervals for the first parameter")
 parser.add_argument("--intervals_2", required=True, type=to_list, help="intervals for the second parameter")
