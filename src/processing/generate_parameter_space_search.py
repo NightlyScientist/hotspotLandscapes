@@ -76,7 +76,7 @@ if vars(args)[third_parameter[0]] < 0:
     print(f"Please specify the value of {third_parameter[0]}")
     exit()
 
-#simFileInfo = saveLogs(vars(args))
+simFileInfo = saveLogs(vars(args))
 
 for parameterVal in arange(start, stop + step, step=step):
     if p_1 == "intensity":
