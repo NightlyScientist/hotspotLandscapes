@@ -6,11 +6,11 @@ Example usage is shown below.
 
 A two-parameter sweep can be performed using the [src/processing/generate_parameters_space_search.py](./src/processing/generate_parameter_space_search.py) file. For example,
 
-> python src/processing/generate_parameter_space_search.py --numberTrials number_of_independent_runs --numberSamples number_of_sampling_points_for_speed_measure --dims width,height --data_path path_to_save_location --radius radius --density density --intensity intensity --ref_line cutoff_height --detailed_analytics --nEnvs number_of_landscapes --parameter parameter_1, parameter_2 --intervals_1 start,step,stop --intervals_2 start,step,stop --rewrite
+> python src/processing/generate_parameter_space_search.py --numberTrials number_of_independent_runs --numberSamples number_of_sampling_points_for_speed_measure --dims width,height --data_path path_to_save_location --radius radius --density density --intensity intensity --ref_line cutoff_height --detailed_analytics --nEnvs number_of_landscapes --parameters parameter_1,parameter_2 --intervals_1 start,step,stop --intervals_2 start,step,stop --rewrite
 
 will generate `number_of_landscapes` distinct landscapes and `number_of_trials` simulations for each landscape, and vary the `parameter_1` and `parameter_2` parameters for the specified range (`interval_1` and `interval_2`); data will be saved to `path_to_save_loation`; hotspot parameters are set to `density`, `intensity`, and `radius`; system size is set to `width` x `height`; the simulation is terminated at `cutoff_height`; measurements of front propgation speed require setting the number of sampling points during a simulation to `number_of_sampling_points_for_speed_measure`. 
 
-Note that in the current version of the code base, `--density`, `--intensity`, `--radius`, `--dims`, `--data_path`, `--intervals_1`, `--intervals_2` are required. The option `--parameters=parameter_1,parameter_2` will overwrite the corresponding parameters set at command-line. 
+Note that `parameter_1` and `parameter_2` must be one of the following strings: ["density", "intensity", "radius"], for example, `--parameters "density","intensity"`. While values for all three `--density`, `--intensity`, `--radius` can be provided, only the parameter that will not be varied is required, for example "radius"; the other two values provided will be overwritten by values set by `interval_1` and `interval_2`.
 
 A list of simulation options and their descriptions can be found using
 
