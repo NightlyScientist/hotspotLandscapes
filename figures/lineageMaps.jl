@@ -1,3 +1,4 @@
+#> this file generates images of the lineages, ancestor survival heatmap, and optimal paths
 using JLD2, FileIO, Revise
 using CSV, DataFrames, StatsBase, Base.Threads
 includet("common/theme.jl")
@@ -72,7 +73,7 @@ function addLineagemapImg!(fig, result, cmap, opts, data_path)
 end
 
 # >collect data files
-# task: convert to dataframes
+#. set data path to specific directory containing a single landscape
 data_path = ""
 
 _dataFileName = "data_phylo.jld2"
@@ -84,16 +85,6 @@ results::LineageTracing.Results = LineageTracing.lineageTraces(data_path, opts)
 customTheme!(22)
 cmap = alphaColor(ColorSchemes.dense, 1.0)
 cmap_2 = alphaColor(ColorSchemes.tempo, 1.0)
-
-# >pinning heatmap and ancestor Survival Frequencies
-fig = Figure(; backgroundcolor=:white, size=(600, 600 * 0.87))
-
-# .lineage heat map of Visitation Frequency
-addLineagemapImg!(fig, results, cmap, opts)
-
-# .surviving ancestors heatmap
-addSurvivalFreqImg!(fig, results, cmap_2)
-display(fig)
 
 # >survival maps sequenced by intensity
 imgPath = "/home/Projects/disorderedLandscapes/workspace/images/survivalSequence"
@@ -216,7 +207,6 @@ addSurvivalFreqImg!(fig, result, cmap_2, opts)
 # display(fig)
 
 #. NN network paths
-# task: hash table of NTuples of positions to fix horizontal lines
 segments = Dict{NTuple{4,Float64},Int64}()
 
 for source_index in sourceIndices

@@ -1,3 +1,4 @@
+#> this file generates images for the sector size scaling in the disordered landscape model
 using JLD2, ArgParse, FileIO, Base.Threads, CSV, DataFrames
 include("common/theme.jl")
 include("common/modeling.jl")
@@ -63,7 +64,8 @@ function saveImage(fig, path, imgPath, name)
 end
 
 # ******************
-path = "/home/Projects/disorderedLandscapes/workspace/experiments/2024_25_02/logs/PS_rf:1000_H:1100_W:2000_R:10_G:0.csv"
+#. path needs to be set to the csv file generated from src/processing/generate_parameter_space_table.py, for example
+path = "workspace/experiments/2024_25_02/logs/PS_rf:1000_H:1100_W:2000_R:10_G:0.csv"
 alt_path = "/storage/disorderedLandscapes/simulations/pathOptimization/"
 
 toplevel = first(filter(t -> contains(t, "2024"), splitpath(path)))

@@ -1,3 +1,6 @@
+#> this file executes the main process for the ancestry analysis
+#> the main process is to calculate the coalescence rates for the genealogical tree
+#> the genealogical tree is built from the phylogeny data
 using JLD2, FileIO, ArgParse, Base.Threads, CSV, DataFrames
 
 module Ancestry

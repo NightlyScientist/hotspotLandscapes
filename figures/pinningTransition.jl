@@ -1,3 +1,4 @@
+#> this file generates images of the pinning transition, the overlap between optimal paths and lineages
 using JLD2, FileIO, Revise, Parameters, CSV, DataFrames, Base.Threads
 include("common/theme.jl")
 include("common/binning.jl")
@@ -250,8 +251,9 @@ function saveImage(fig, path, imgPath, name)
   return figPath
 end
 
+#. set path to be the csv file generated from src/processing/generate_parameter_space_table.py for the data set that you would like to analyze, for example
 path = "/home/Projects/disorderedLandscapes/workspace/experiments/2024_25_02/logs/PS_rf:1000_H:1100_W:2000_R:10_G:0.csv"
-alt_path = "/storage/jgonzaleznunez/disorderedLandscapes/simulations/pathOptimization/"
+alt_path = "/storage/disorderedLandscapes/simulations/pathOptimization/"
 img_path = "/home/Images/disorderedLandscapes/pinningTransition"
 
 toplevel = first(filter(t -> contains(t, "2024"), splitpath(path)))

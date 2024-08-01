@@ -1,3 +1,4 @@
+#> this file generates an image for the effect of a single hotspot
 include("../../src/base/model.jl")
 include("../../src/base/containers.jl")
 include("../../src/base/environment.jl")

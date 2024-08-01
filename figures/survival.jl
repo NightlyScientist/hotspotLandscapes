@@ -1,3 +1,4 @@
+#> this file generates the number of surviving ancestors as a function of the intensity, and as a function of a `pinning parameter`
 using JLD2, FileIO, Revise, Parameters, CSV, DataFrames, Base.Threads
 include("common/theme.jl")
 include("common/binning.jl")
@@ -76,6 +77,7 @@ function survivingAncestors(path)::Measurement{Float64}
   return measurement(mean_and_std(ancestorCount)...)
 end
 
+#. set paths to be the csv files generated from src/processing/generate_parameter_space_table.py for the desired simulations sets, for example
 paths = [
   "/home/Projects/disorderedLandscapes/workspace/experiments/2024_25_02/logs/PS_rf:1000_H:1100_W:2000_R:10_G:0.csv",
   "/home/Projects/disorderedLandscapes/workspace/experiments/2024_26_02/logs/PS_rf:1000_H:1100_W:2000_R:10_G:0.csv"

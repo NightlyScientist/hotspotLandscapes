@@ -1,3 +1,5 @@
+#> this file generates figures for the common ancestry time and coalescence rates
+#. the script in routines/ancestry.jl must be executed to process lineage data, which is required for this script to run
 using JLD2, FileIO, Base.Threads, Parameters, Revise, CSV, DataFrames
 include("../src/calculations/lineages.jl")
 include("../src/base/trees.jl")
@@ -109,6 +111,7 @@ function process(gdf, cmap, vrange, colorby, max_distance, scale_factor)
 end
 
 # ******************************
+#. set path to csv of all data directories
 path = ""
 img_path = "/home/Images/disorderedLandscapes/ancestry/processed/"
 
