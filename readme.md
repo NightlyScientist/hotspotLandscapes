@@ -32,4 +32,8 @@ SI figures of optimal path calculations can be generated in the jupyter notebook
 
 This code requires both Julia (v1.10.4) and python (v3.11.5) to be installed. Our Julia environment is contained in the [Manifest.toml](Manifest.toml) and [Project.toml](Project.toml) files. Our Python environment is provided in [environment.yml](environment.yml).
 
+Julia package dependencies can be downloaded and installed for the current project using the [Project.toml](Project.toml) file through the following command:
+
+> julia --project=. -e 'using Pkg; Pkg.instantiate()'
+
 While the script [generate_parameter_space_search.py](./src/processing/generate_parameter_space_search.py) to generate simulations works best with the [slurm workload manager](https://slurm.schedmd.com/overview.html) installed, the script will check for an existing slurm installion and will fallback to executing sequentially via bash if no slurm installation is found.
