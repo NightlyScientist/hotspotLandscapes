@@ -38,6 +38,9 @@ pararser() {
 }
 
 # where to save log information
+mkdir -p "workspace/logs/jobs"
+mkdir -p "workspace/logs/slurm"
+
 logFile="workspace/logs/jobs/submission_record.log"
 touch $logFile
 

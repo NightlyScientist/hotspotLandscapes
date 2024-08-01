@@ -76,7 +76,7 @@ if vars(args)[third_parameter[0]] < 0:
     print(f"Please specify the value of {third_parameter[0]}")
     exit()
 
-simFileInfo = saveLogs(vars(args))
+#simFileInfo = saveLogs(vars(args))
 
 for parameterVal in arange(start, stop + step, step=step):
     if p_1 == "intensity":
@@ -105,8 +105,8 @@ for parameterVal in arange(start, stop + step, step=step):
             --flags {",".join(extra_flags)}
             """
 
-    if shutil.which("sbatch") is None:
+    if shutil.which("slurm") is None:
         print("Slurm scheduler is not installed. Executing using bash.")
-        cmd.replace("sbatch", "bash")
+        cmd = cmd.replace("sbatch", "bash")
 
     subprocess.run(cmd, shell=True)
